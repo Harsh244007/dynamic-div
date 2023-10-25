@@ -8,7 +8,7 @@ const App = () => {
   ]);
   const [expanded, setExpanded] = useState({ id: 0, value: false });
 
-  const handleClickDiv = (index) => {
+  const handleClickDiv = (index:number) => {
     const updatedItems = divItems.filter((_, i) => i !== index);
     const selectedItem = divItems[index];
     setExpanded({ id: 0, value: index === expanded.id ? !expanded.value : true });
