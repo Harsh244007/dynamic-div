@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-:root {
+body {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -15,4 +15,40 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  max-width: 800px;
+  margin: auto;
+  overflow: auto;
+  padding: 20px;
+}
+body * {
+  transition: all 500ms;
+  position: relative;
+}
+.bg-red-500 {
+  --color: red;
+  background-color: var(--color);
+  border-color: var(--color);
+}
+.bg-blue-500 {
+  --color: blue;
+  background-color: var(--color);
+  border-color: var(--color);
+}
+.bg-green-500 {
+  --color: green;
+  background-color: var(--color);
+  border-color: var(--color);
+}
+.grid{
+  grid-template-columns: auto;
+  transition: 2s;
+  grid-template-rows: auto auto auto;
+}
+.uniqueGrid{
+  grid-template-columns: auto auto;
+  grid-template-areas: auto auto;
+}
+.uniqueGrid > div:first-child{
+outline: 5px solid cyan;
+grid-column: 1/3;
 }

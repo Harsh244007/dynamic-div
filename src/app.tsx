@@ -1,11 +1,30 @@
-import { memo } from "preact/compat"
+import { memo, useState } from "preact/compat";
 
-const App=()=> {
+const App = () => {
+  const [divItems, setDivItems] = useState([
+    { id: 0, name: "first", color: "red", childItem: "hi from first", isChild: false },
+    { id: 1, name: "second", color: "blue", childItem: "hi from second", isChild: false },
+    { id: 2, name: "third", color: "green", childItem: "hi from third", isChild: false },
+  ]);
+  const [expanded, setExpanded] = useState({ id: 0, value: false });
+
+  const handleClickDiv = (index) => {
+    const updatedItems = divItems.filter((_, i) => i !== index);
+    const selectedItem = divItems[index];
+    setExpanded({ id: 0, value: index === expanded.id ? !expanded.value : true });
+    setDivItems(() => [selectedItem, ...updatedItems]);
+  };
 
   return (
-    <>
-      <div className="text-2xl m-auto text-center">Hello There</div>
-    </>
-  )
-}
-export default memo(App)
+    <div className={`grid ${expanded.value && "uniqueGrid"} gap-5 w-full h-screen`}>
+      {divItems.map((divItem, index) => (
+        <div key={divItem.id} className={`border bg-${divItem.color}-500 cursor-pointer`} onClick={() => handleClickDiv(index)}>
+          <p>{divItem.name}</p>
+          {index === expanded.id && expanded.value && <p>{divItem.childItem}</p>}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default memo(App);
