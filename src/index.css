@@ -39,7 +39,7 @@ body * {
   background-color: var(--color);
   border-color: var(--color);
 }
-.grid{
+/* .grid{
   grid-template-columns: auto;
   transition: 2s;
   grid-template-rows: auto auto auto;
@@ -51,4 +51,21 @@ body * {
 .uniqueGrid > div:first-child{
 outline: 5px solid cyan;
 grid-column: 1/3;
+} */
+.flex {
+  display: flex;
+  flex-direction: column;
+}
+.flex > div {
+  width: 100%;
+  height: 150px;
+}
+.uniqueGrid{
+  flex-direction: row;
+}
+.uniqueGrid > div {
+  width: 48%;
+}
+.uniqueGrid > div:first-child {
+  width: 100%;
 }
