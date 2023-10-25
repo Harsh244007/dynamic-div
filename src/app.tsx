@@ -16,7 +16,7 @@ const App = () => {
   };
 
   return (
-    <div className={`flex flex-wrap justify-center ${expanded.value && "uniqueGrid"} gap-5 w-full `}>
+    <div className={`flex flex-wrap justify-center items-center ${expanded.value && "uniqueGrid"} gap-5 w-full `}>
       {divItems.map((divItem, index) => (
         <div key={divItem.id} className={`border bg-${divItem.color}-500 cursor-pointer`} onClick={() => handleClickDiv(index)}>
           <p>{divItem.name}</p>
