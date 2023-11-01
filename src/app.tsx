@@ -6,11 +6,14 @@ const App = () => {
     { id: 1, name: "second", color: "blue", childItem: "hi from second", isChild: false },
     { id: 2, name: "third", color: "green", childItem: "hi from third", isChild: false },
   ]);
-  const [expanded, setExpanded] = useState({ id: null, value: false });
+  // @ts-ignore
+  const [expanded, setExpanded] = useState<>({ id: null, value: false });
 
   const handleClickDiv = (index:number) => {
     const updatedItems = divItems.filter((_, i) => i !== index);
     const selectedItem = divItems[index];
+    
+  // @ts-ignore
     setExpanded({ id: 0, value: index === expanded.id ? !expanded.value : true });
     setDivItems(() => [selectedItem, ...updatedItems]);
   };
