@@ -6,7 +6,7 @@ const App = () => {
     { id: 1, name: "second", color: "blue", childItem: "hi from second", isChild: false },
     { id: 2, name: "third", color: "green", childItem: "hi from third", isChild: false },
   ]);
-  const [expanded, setExpanded] = useState({ id: 0, value: false });
+  const [expanded, setExpanded] = useState({ id: null, value: false });
 
   const handleClickDiv = (index:number) => {
     const updatedItems = divItems.filter((_, i) => i !== index);
@@ -16,7 +16,7 @@ const App = () => {
   };
 
   return (
-    <div className={`flex flex-wrap justify-center items-center ${expanded.value && "uniqueGrid"} gap-5 w-full `}>
+    <div className={`flex flex-wrap justify-center items-center ${expanded.value && "uniqueGrid"} ${expanded.id == null && "noshrink"} gap-5 w-full `}>
       {divItems.map((divItem, index) => (
         <div key={divItem.id} className={`border bg-${divItem.color}-500 cursor-pointer`} onClick={() => handleClickDiv(index)}>
           <p>{divItem.name}</p>

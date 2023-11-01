@@ -49,11 +49,16 @@ body {
 outline: 5px solid cyan;
 grid-column: 1/3;
 } */
+.flex * {
+  transition: all 2s;
+}
 .flex {
   display: flex;
   margin: auto;
   flex-direction: column;
+  transition: all 2s;
 }
+
 .flex > div {
   width: 100%;
   max-width: 300px;
@@ -61,21 +66,39 @@ grid-column: 1/3;
   transition: all 100ms;
 }
 .flex:not(.uniqueGrid) > div {
-  transition: all 500ms;
+  /* transition: all 500ms; */
   height: 150px;
 }
 .uniqueGrid {
-  flex-direction: row;
+  transition: all 2s;
+  animation: changeFlex 500ms linear forwards;
+}
+@keyframes changeFlex {
+  from {
+    flex-direction: column;
+  }
+  to {
+    flex-direction: row;
+  }
+}
+
+.uniqueGrid > div:first-child {
+  animation: delay 500ms linear forwards;
+}
+@keyframes delay {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    max-width: 620px;
+    transform: translateY(0%);
+  }
 }
 .uniqueGrid > div {
   height: 150px;
 }
 .uniqueGrid > div {
   transition-duration: 10ms;
-}
-.uniqueGrid > div:first-child {
-  max-width: 620px;
-  transition-duration: 0ms;
 }
 @media (max-width: 650px) {
   .flex > div {
@@ -85,5 +108,28 @@ grid-column: 1/3;
   .flex:not(.uniqueGrid) > div {
     max-width: 300px;
     min-width: 300px;
+  }
+}
+.flex:not(.uniqueGrid, .noshrink) > div:first-child {
+  animation: shrink 500ms linear forwards;
+}
+
+.flex:not(.uniqueGrid, .noshrink) {
+  animation: changeFlexReverse 500ms linear forwards;
+}
+@keyframes shrink {
+  from {
+    max-width: 600px;
+  }
+  to {
+    max-width: 300px;
+  }
+}
+@keyframes changeFlexReverse {
+  from {
+    flex-direction: row;
+  }
+  to {
+    flex-direction: column;
   }
 }
