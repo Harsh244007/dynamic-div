@@ -7,7 +7,7 @@ const App = () => {
     { id: 2, name: "third", color: "green", childItem: "hi from third", isChild: false },
   ]);
   // @ts-ignore
-  const [expanded, setExpanded] = useState<>({ id: null, value: false });
+  const [expanded, setExpanded] = useState({ id: null, value: false });
 
   const handleClickDiv = (index:number) => {
     const updatedItems = divItems.filter((_, i) => i !== index);
