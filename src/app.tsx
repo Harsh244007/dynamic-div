@@ -6,20 +6,24 @@ const App = () => {
     { id: 1, name: "second", color: "blue", childItem: "hi from second", isChild: false },
     { id: 2, name: "third", color: "green", childItem: "hi from third", isChild: false },
   ]);
-  // @ts-ignore
-  const [expanded, setExpanded] = useState({ id: null, value: false });
+  type expandedStateTypes = {
+    id: null | number;
+    value: boolean;
+  };
+  const [expanded, setExpanded] = useState<expandedStateTypes>({ id: null, value: false });
 
-  const handleClickDiv = (index:number) => {
+  const handleClickDiv = (index: number) => {
     const updatedItems = divItems.filter((_, i) => i !== index);
     const selectedItem = divItems[index];
-    
-  // @ts-ignore
+
     setExpanded({ id: 0, value: index === expanded.id ? !expanded.value : true });
     setDivItems(() => [selectedItem, ...updatedItems]);
   };
 
   return (
-    <div className={`flex flex-wrap justify-center items-center ${expanded.value && "uniqueGrid"} ${expanded.id == null && "noshrink"} gap-5 w-full `}>
+    <div
+      className={`flex flex-wrap justify-center items-center ${expanded.value && "uniqueGrid"} ${expanded.id == null && "noshrink"} gap-5 w-full `}
+    >
       {divItems.map((divItem, index) => (
         <div key={divItem.id} className={`border bg-${divItem.color}-500 cursor-pointer`} onClick={() => handleClickDiv(index)}>
           <p>{divItem.name}</p>
